@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="grey">#f6f6f7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="main">#ff4343</color>
+    <color name="tagblue">#36227DC3</color>
+    <color name="tagyellow">#50fcd837</color>
+</resources>

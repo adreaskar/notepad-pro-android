@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/grey"
+    android:padding="10dp"
+    android:gravity="center_vertical"
+    tools:context=".AddNoteActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add new note"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_corner"
+        android:padding="10dp"
+        android:layout_margin="20dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:hint="Title"
+            android:background="@color/grey"
+            android:padding="10dp"
+            android:layout_margin="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/body"
+            android:hint="Description"
+            android:background="@color/grey"
+            android:padding="10dp"
+            android:lines="8"
+            android:gravity="top"
+            android:layout_margin="10dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favourite"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:id="@+id/checkfavourite"
+                android:buttonTint="@color/main"
+                android:onClick="checkCheckbox"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Private"
+                android:id="@+id/radioprivate"
+                android:layout_marginEnd="12dp"
+                android:buttonTint="@color/main"
+                android:onClick="checkRadio"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Public"
+                android:id="@+id/radiopublic"
+                android:layout_marginEnd="5dp"
+                android:buttonTint="@color/main"
+                android:onClick="checkRadio"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add note"
+        android:id="@+id/addnote"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/main"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"/>
+
+</LinearLayout>
