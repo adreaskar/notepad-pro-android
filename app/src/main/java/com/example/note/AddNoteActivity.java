@@ -21,6 +21,7 @@ public class AddNoteActivity extends AppCompatActivity {
     Button addnote;
     String user, visibility = "private", favourite = "no";
     DBHelper DB;
+    RadioButton radioprivate, radiopublic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,8 @@ public class AddNoteActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
         body = findViewById(R.id.body);
         addnote = findViewById(R.id.addnote);
+        radioprivate = findViewById(R.id.radioprivate);
+        radiopublic = findViewById(R.id.radiopublic);
         user = sessionManagement.getSession();
 
         addnote.setOnClickListener(new View.OnClickListener() {
@@ -44,24 +47,28 @@ public class AddNoteActivity extends AppCompatActivity {
                 Date now = new Date();
                 String strDate = sdfDate.format(now);
 
-                Boolean insert = DB.insertNoteData(noteTitle, noteBody, favourite, visibility, user, strDate );
-                if (insert) {
-                    Toast.makeText(AddNoteActivity.this, "Note saved successfully!", Toast.LENGTH_SHORT).show();
+                if (radioprivate.isChecked() || radiopublic.isChecked()) {
+                    Boolean insert = DB.insertNoteData(noteTitle, noteBody, favourite, visibility, user, strDate );
+                    if (insert) {
+                        Toast.makeText(AddNoteActivity.this, "Note saved successfully!", Toast.LENGTH_SHORT).show();
 
-                    Intent fromIntent = getIntent();
-                    String cameFrom = fromIntent.getStringExtra("camefrom");
+                        Intent fromIntent = getIntent();
+                        String cameFrom = fromIntent.getStringExtra("camefrom");
 
-                    if (cameFrom.equals("home")) {
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        startActivity(intent);
+                        if (cameFrom.equals("home")) {
+                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), FavouritesActivity.class);
+                            startActivity(intent);
+                        }
+
+
                     } else {
-                        Intent intent = new Intent(getApplicationContext(), FavouritesActivity.class);
-                        startActivity(intent);
+                        Toast.makeText(AddNoteActivity.this, "Note could not be saved", Toast.LENGTH_SHORT).show();
                     }
-
-
                 } else {
-                    Toast.makeText(AddNoteActivity.this, "Note could not be saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNoteActivity.this, "Please check one of the radio buttons", Toast.LENGTH_SHORT).show();
                 }
             }
         });
